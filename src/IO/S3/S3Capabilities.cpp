@@ -25,11 +25,10 @@ void S3Capabilities::setIsBatchDeleteSupported(bool support_batch_delete_)
 
     if (support_batch_delete.has_value() && (support_batch_delete.value() != support_batch_delete_))
     {
-        LOG_ERROR(getLogger("S3Capabilities"),
-                  "Got different results ({} vs {}) from checking if the cloud storage supports batch delete (DeleteObjects), "
-                  "the cloud storage API may be unstable",
-                  support_batch_delete.value(), support_batch_delete_);
-        chassert(false && "Got different results from checking if the cloud storage supports batch delete");
+        LOG_WARNING(getLogger("S3Capabilities"),
+                    "Got different results ({} vs {}) from checking if the cloud storage supports batch delete (DeleteObjects), "
+                    "the cloud storage API may be unstable",
+                    support_batch_delete.value(), support_batch_delete_);
     }
 
     support_batch_delete = support_batch_delete_;
